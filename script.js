@@ -163,3 +163,8 @@ backspaceButton.addEventListener('click', handleBackspaceClick);
 // Keyboard support
 window.addEventListener('keydown', handleKeyboardInput);
 
+
+// Initialize display
+updateDisplay();
+
+
