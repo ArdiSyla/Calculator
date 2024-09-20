@@ -133,4 +133,23 @@ function handleBackspaceClick() {
     updateDisplay();
 }
 
+// Function to handle keyboard input
+function handleKeyboardInput(event) {
+    const key = event.key;
+
+    if (!isNaN(key)) {
+        handleDigitClick(key);
+    } else if (key === '.') {
+        handleDecimalClick();
+    } else if (key === 'Backspace') {
+        handleBackspaceClick();
+    } else if (key === 'Enter' || key === '=') {
+        handleEqualsClick();
+    } else if (['+', '-', '*', '/'].includes(key)) {
+        handleOperatorClick(key);
+    } else if (key === 'Escape') {
+        handleClearClick();
+    }
+}
+
 
