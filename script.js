@@ -32,3 +32,8 @@ function operate(operator, firstNumber, secondNumber) {
     }
 }
 
+let firstNumber = null;
+let secondNumber = null;
+let currentOperator = null;
+let displayValue = '0';
+let waitingForSecondNumber = false;
