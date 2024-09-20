@@ -152,4 +152,14 @@ function handleKeyboardInput(event) {
     }
 }
 
+// Event listeners for buttons
+digitButtons.forEach(button => button.addEventListener('click', (e) => handleDigitClick(e.target.textContent)));
+operatorButtons.forEach(button => button.addEventListener('click', (e) => handleOperatorClick(e.target.textContent)));
+decimalButton.addEventListener('click', handleDecimalClick);
+equalsButton.addEventListener('click', handleEqualsClick);
+clearButton.addEventListener('click', handleClearClick);
+backspaceButton.addEventListener('click', handleBackspaceClick);
+
+// Keyboard support
+window.addEventListener('keydown', handleKeyboardInput);
 
