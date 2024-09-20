@@ -45,3 +45,8 @@ const decimalButton = document.querySelector('.decimal');
 const equalsButton = document.querySelector('.equal-sign');
 const clearButton = document.querySelector('.clear');
 const backspaceButton = document.querySelector('.backspace');
+
+function updateDisplay() {
+    display.textContent = displayValue;
+}
+
