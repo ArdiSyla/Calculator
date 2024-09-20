@@ -50,3 +50,87 @@ function updateDisplay() {
     display.textContent = displayValue;
 }
 
+// Function to round long decimal results
+function roundResult(result) {
+    return Math.round(result * 100000) / 100000; // Round to 5 decimal places
+}
+
+// Function to handle digit button clicks
+function handleDigitClick(digit) {
+    if (waitingForSecondNumber) {
+        displayValue = digit; // Start fresh for second number
+        waitingForSecondNumber = false;
+    } else {
+        displayValue = displayValue === '0' ? digit : displayValue + digit; // Append digits
+    }
+    updateDisplay();
+}
+
+// Function to handle decimal button clicks
+function handleDecimalClick() {
+    if (!displayValue.includes('.')) {
+        displayValue += '.';
+    }
+    updateDisplay();
+}
+
+// Function to handle operator button clicks
+function handleOperatorClick(operator) {
+    if (currentOperator && !waitingForSecondNumber) {
+        // Evaluate the current operation before proceeding
+        secondNumber = parseFloat(displayValue);
+        const result = operate(currentOperator, firstNumber, secondNumber);
+        displayValue = String(roundResult(result));
+        updateDisplay();
+        firstNumber = result;
+    } else {
+        firstNumber = parseFloat(displayValue);
+    }
+
+    currentOperator = operator;
+    waitingForSecondNumber = true;
+}
+
+// Function to handle the equals button click
+function handleEqualsClick() {
+    if (!currentOperator || waitingForSecondNumber) return; // Prevent incomplete calculations
+
+    secondNumber = parseFloat(displayValue);
+
+    if (currentOperator === '/' && secondNumber === 0) {
+        displayValue = "Error: Can't divide by 0!";
+        updateDisplay();
+        resetCalculator();
+        return;
+    }
+
+    const result = operate(currentOperator, firstNumber, secondNumber);
+    displayValue = String(roundResult(result));
+    updateDisplay();
+
+    firstNumber = result;
+    currentOperator = null;
+    waitingForSecondNumber = true;
+}
+
+// Function to handle the clear button
+function handleClearClick() {
+    displayValue = '0';
+    firstNumber = null;
+    secondNumber = null;
+    currentOperator = null;
+    waitingForSecondNumber = false;
+    updateDisplay();
+}
+
+// Function to handle backspace
+function handleBackspaceClick() {
+    if (displayValue.length === 1 || (displayValue.length === 2 && displayValue[0] === '-')) {
+        displayValue = '0';
+    } else {
+        displayValue = displayValue.slice(0, -1);
+    }
+    updateDisplay();
+}
+
+
