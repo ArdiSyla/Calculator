@@ -37,3 +37,11 @@ let secondNumber = null;
 let currentOperator = null;
 let displayValue = '0';
 let waitingForSecondNumber = false;
+
+const display = document.querySelector('.calculator-screen');
+const digitButtons = document.querySelectorAll('.digit');
+const operatorButtons = document.querySelectorAll('.operator');
+const decimalButton = document.querySelector('.decimal');
+const equalsButton = document.querySelector('.equal-sign');
+const clearButton = document.querySelector('.clear');
+const backspaceButton = document.querySelector('.backspace');
